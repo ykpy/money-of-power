@@ -204,6 +204,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 13700004, guid: 29032ffe50eebbd41b9e5c4017762813, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.size
+      value: 26
+      objectReference: {fileID: 0}
     - target: {fileID: 400266, guid: 29032ffe50eebbd41b9e5c4017762813, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.43
@@ -263,7 +267,7 @@ Prefab:
     - target: {fileID: 9500000, guid: 29032ffe50eebbd41b9e5c4017762813, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 7b8db3e2f0141a94ca06a5f0dcaa7b9c, type: 2}
+      objectReference: {fileID: 9100000, guid: a1d512a08819de642ade532c4a3f5090, type: 2}
     - target: {fileID: 100266, guid: 29032ffe50eebbd41b9e5c4017762813, type: 3}
       propertyPath: m_Name
       value: Player
@@ -457,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e5c01a20b6c10419c12d246a52deae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!136 &1213393217
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -483,7 +488,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 10
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1333963249
 GameObject:
