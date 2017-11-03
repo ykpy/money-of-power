@@ -4,7 +4,9 @@ using UnityEditor;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 
-public class PyTerminal : EditorWindow {
+public class PyTerminalWindow : EditorWindow {
+
+    const string PROJECT_NAME = "PyTerminal";
 
 	public static string PythonScriptPath;
 	public const string IronPythonTemplateFile = "__template__.py";
@@ -16,13 +18,14 @@ public class PyTerminal : EditorWindow {
 
 	string pythonCode = "";
 	string history = "";
+    string pythonFileName = "";
 
 	bool insertIndent = false;
 	int id;
 
 	bool IsPromptFocused {
 		get {
-			return GUI.GetNameOfFocusedControl() == "PythonPrompt";
+			return GUI.GetNameOfFocusedControl() == PROJECT_NAME;
 		}
 	}
 
@@ -33,11 +36,13 @@ public class PyTerminal : EditorWindow {
 
 	[MenuItem("Tools/Python Prompt")]
 	public static void RunPython() {
-		var window = GetWindow<PyTerminal>();
+		var window = GetWindow<PyTerminalWindow>();
 		window.Initialize();
 	}
 
 	void Initialize() {
+        titleContent = new GUIContent(PROJECT_NAME);
+
 		using (var reader = new System.IO.StreamReader(PythonScriptPath + IronPythonTemplateFile)) {
 			codeTemplate = reader.ReadToEnd();
 		}
@@ -49,7 +54,7 @@ public class PyTerminal : EditorWindow {
 
 	Vector2 scrollPosition;
 	void OnGUI() {
-		using (var scroll = new GUILayout.ScrollViewScope(scrollPosition)) {
+        using (var scroll = new GUILayout.ScrollViewScope(scrollPosition)) {
 			scrollPosition = scroll.scrollPosition;
 			GUILayout.Label(history);
 		}
@@ -60,7 +65,9 @@ public class PyTerminal : EditorWindow {
 		style.fontSize = 11;
 		style.wordWrap = false;
 
-		GUI.SetNextControlName("PythonPrompt");
+		GUI.SetNextControlName(PROJECT_NAME);
+
+        // Text Area
 		pythonCode = GUILayout.TextArea(pythonCode, style, GUILayout.Height(position.height / 2));
 
 		if (insertIndent) {
@@ -77,9 +84,16 @@ public class PyTerminal : EditorWindow {
 
 		GUI.backgroundColor = GUI.contentColor;
 
+        // Run Button
 		if (GUILayout.Button("Run")) {
 			ExecutePythonCode(pythonCode);
 		}
+
+        // Run external Python code
+        pythonFileName = GUILayout.TextField(pythonFileName);
+        if (GUILayout.Button("Run File")) {
+            ExecutePythonFile(pythonFileName);
+        }
 	}
 
 	bool GetKeyDown(KeyCode keyCode) {
@@ -98,4 +112,12 @@ public class PyTerminal : EditorWindow {
 		pythonCode = "";
 		GUIUtility.keyboardControl = 0;
 	}
+
+    void ExecutePythonFile(string fileName) {
+        using (var fileReader = new System.IO.StreamReader(PythonScriptPath + fileName)) {
+            var code = fileReader.ReadToEnd();
+            Debug.Log(code);
+            ExecutePythonCode(code);
+        }
+    }
 }
