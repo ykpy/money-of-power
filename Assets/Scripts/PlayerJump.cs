@@ -13,17 +13,18 @@ public class PlayerJump : MonoBehaviour {
     Animator animator;
 
     CharacterController controller;
+    PlayerMovement playerMovement;
 
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update () {
         if (isGrounded) {
-            if (Input.GetButtonDown("Jump"))
+            if (PlayerInput.GetButtonDown("Jump", playerMovement.PlayerID))
             {
                 rb.velocity = new Vector3(0, jumpPower, 0);
             }

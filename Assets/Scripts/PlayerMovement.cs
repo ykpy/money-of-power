@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField]
     PlayerInput.PlayerID playerId;
+    public PlayerInput.PlayerID PlayerID {
+        get { return playerId; }
+    }
 
     // Use this for initialization
     void Start() {
@@ -26,7 +29,6 @@ public class PlayerMovement : MonoBehaviour {
     void Update() {
         var direction = new Vector3(PlayerInput.GetAxis("Horizontal", playerId) * moveSpeed, rb.velocity.y, PlayerInput.GetAxis("Vertical", playerId) * moveSpeed);
         rb.velocity = direction;
-        Debug.Log(playerId.ToString() + ":" + direction);
 
         if (Mathf.Abs(direction.x) > 0.2f || Mathf.Abs(direction.z) > 0.2f) {
             transform.localRotation = Quaternion.LookRotation(direction);
