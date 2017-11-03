@@ -7,7 +7,7 @@ public class PlayerJump : MonoBehaviour {
     Rigidbody rb;
 
     [SerializeField]
-    float moveSpeed;
+    float jumpPower;
     bool isGrounded = true;
 
     Animator animator;
@@ -25,8 +25,7 @@ public class PlayerJump : MonoBehaviour {
         if (isGrounded) {
             if (Input.GetButtonDown("Jump"))
             {
-                var jumpPower = new Vector3(0, 6, 0);
-                rb.velocity = jumpPower;
+                rb.velocity = new Vector3(0, jumpPower, 0);
             }
         }
     }
