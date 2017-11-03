@@ -12,9 +12,12 @@ from UnityEditor import *
 import sys
 sys.path.append(Application.dataPath + '/../Plugins')
 
+
 def log(message):
     Debug.Log(message)
 
+
+# insert python code from executor
 {0}
 
 

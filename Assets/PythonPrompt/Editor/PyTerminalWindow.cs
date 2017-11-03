@@ -116,7 +116,6 @@ public class PyTerminalWindow : EditorWindow {
     void ExecutePythonFile(string fileName) {
         using (var fileReader = new System.IO.StreamReader(PythonScriptPath + fileName)) {
             var code = fileReader.ReadToEnd();
-            Debug.Log(code);
             ExecutePythonCode(code);
         }
     }
