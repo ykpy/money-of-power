@@ -4,7 +4,7 @@ using UnityEditor;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 
-public class PythonPrompt : EditorWindow {
+public class PyTerminal : EditorWindow {
 
 	public static string PythonScriptPath;
 	public const string IronPythonTemplateFile = "__template__.py";
@@ -33,7 +33,7 @@ public class PythonPrompt : EditorWindow {
 
 	[MenuItem("Tools/Python Prompt")]
 	public static void RunPython() {
-		var window = GetWindow<PythonPrompt>();
+		var window = GetWindow<PyTerminal>();
 		window.Initialize();
 	}
 
