@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour {
     Animator animator;
     bool isWalking;
 
+    [SerializeField]
+    PlayerInput.PlayerID playerId;
+
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -21,9 +24,9 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        var direction = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
+        var direction = new Vector3(PlayerInput.GetAxis("Horizontal", playerId) * moveSpeed, rb.velocity.y, PlayerInput.GetAxis("Vertical", playerId) * moveSpeed);
         rb.velocity = direction;
-
+        Debug.Log(playerId.ToString() + ":" + direction);
 
         if (Mathf.Abs(direction.x) > 0.2f || Mathf.Abs(direction.z) > 0.2f) {
             transform.localRotation = Quaternion.LookRotation(direction);
