@@ -15,4 +15,9 @@ public static class SceneLoader {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         return true;
     }
+
+    public static bool LoadScene(string sceneName) {
+        SceneManager.LoadScene(sceneName);
+        return true;
+    }
 }

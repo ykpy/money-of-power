@@ -36,6 +36,6 @@ public class TimeManager : SingletonMonoBehaviour<TimeManager> {
     void TimeUp()
     {
         Debug.Log("Time Up!!");
-        SceneManager.LoadScene("result");
+        GameManager.Instance.LoadResult();
     }
 }
