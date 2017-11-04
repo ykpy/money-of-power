@@ -14,6 +14,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
     private void Update() {
     }
 
+    public void FinishGame() {
+        LoadResult();
+    }
+
     public void LoadResult() {
         SceneLoader.LoadSceneAdditive(Consts.RESULT);
     }
