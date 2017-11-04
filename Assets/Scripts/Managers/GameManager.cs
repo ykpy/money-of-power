@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : SingletonMonoBehaviour<GameManager> {
-    public PlayerMovement player;
+    public PlayerStatus player1Status;
+    public PlayerStatus player2Status;
 
     private void Update() {
     }

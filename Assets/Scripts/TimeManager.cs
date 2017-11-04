@@ -8,19 +8,32 @@ public class TimeManager : MonoBehaviour {
 	public int time;
 	float times;
 	Text timeText;
+    bool isTimeUp = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		timeText = this.GetComponent<Text> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		times -= Time.deltaTime;
-		if (times <= 0.0) {
-			times = 1.0f;
-			time--;
-		}
-		timeText.text = time.ToString();
+        if (time > 0) {
+            times -= Time.deltaTime;
+            if (times <= 0.0) {
+                times = 1.0f;
+                time--;
+            }
+            timeText.text = time.ToString();
+        } else {
+            if (!isTimeUp) {
+                TimeUp();
+                isTimeUp = true;
+            }
+        }
 	}
+
+    void TimeUp()
+    {
+        Debug.Log("Time Up!!");
+    }
 }
