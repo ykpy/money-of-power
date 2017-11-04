@@ -161,6 +161,16 @@ Prefab:
       propertyPath: playerId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114867601449596244, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a,
+        type: 2}
+      propertyPath: money
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867601449596244, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a,
+        type: 2}
+      propertyPath: pride
+      value: 19
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a, type: 2}
   m_IsPrefabParent: 0
@@ -300,6 +310,30 @@ Prefab:
         type: 2}
       propertyPath: money
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630731264192170, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.026731491
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630731264192170, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.046953294
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630731264192170, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.10265426
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877265367891260, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.02673147
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877265367891260, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.046953294
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877265367891260, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.1026548
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a, type: 2}
@@ -470,6 +504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1460393494}
   - component: {fileID: 1460393493}
+  - component: {fileID: 1460393495}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -503,6 +538,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1460393495
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460393492}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: df968c08d9f102b44ad80d8d82389499, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &2117033204 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114867601449596244, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a,
