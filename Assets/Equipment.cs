@@ -24,6 +24,7 @@ public class Equipment : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (PlayerInput.GetButtonDown("Fire1", playerMovement.PlayerID) && bc.enabled == false) {
+            Debug.Log("Attack");
             bc.enabled = true;
         }
 	}

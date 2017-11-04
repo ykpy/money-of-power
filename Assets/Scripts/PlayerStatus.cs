@@ -11,12 +11,6 @@ public class PlayerStatus : MonoBehaviour {
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            CalculateDamage(0);
-        }
-    }
-
     public void CalculateDamage(int damage) {
         if (pride - damage > 0) {
             pride -= damage;
