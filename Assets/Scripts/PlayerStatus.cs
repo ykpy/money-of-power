@@ -22,6 +22,7 @@ public class PlayerStatus : MonoBehaviour {
             pride -= damage;
         } else {
             pride = 0;
+            GameManager.Instance.FinishGame();
         }
 
         playerMovement.Damage();
