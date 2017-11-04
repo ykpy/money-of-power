@@ -13,11 +13,11 @@ public class PlayerStatus : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            calculateDamage(0);
+            CalculateDamage(0);
         }
     }
 
-    public void calculateDamage(int damage) {
+    public void CalculateDamage(int damage) {
         if (pride - damage > 0) {
             pride -= damage;
         } else {
@@ -26,5 +26,19 @@ public class PlayerStatus : MonoBehaviour {
         }
 
         playerMovement.Damage();
+    }
+
+    public void PlusMoney(int paid, int otherPlayerMoney) {
+        if (otherPlayerMoney > 0) {
+            money += paid * 10000;
+        }
+    }
+
+    public void MinusMoney(int pay) {
+        if (money - pay > 0) {
+            money -= pay * 10000;
+        } else {
+            money = 0;
+        }
     }
 }
