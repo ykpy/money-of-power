@@ -27,6 +27,11 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Damaged@loop 0")) {
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            return;
+        }
+
         var cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
         //var direction = new Vector3(PlayerInput.GetAxis("Horizontal", playerId) * moveSpeed, rb.velocity.y, PlayerInput.GetAxis("Vertical", playerId) * moveSpeed);
         var moveForward = cameraForward * PlayerInput.GetAxis("Vertical", playerId) + Camera.main.transform.right * PlayerInput.GetAxis("Horizontal", playerId);
@@ -41,5 +46,9 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         animator.SetBool("isWalking", isWalking);
+    }
+
+    public void Damage() {
+        animator.SetTrigger("damage");
     }
 }
