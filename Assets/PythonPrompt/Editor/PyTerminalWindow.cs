@@ -13,28 +13,20 @@ public class PyTerminalWindow : EditorWindow {
 
 	static string codeTemplate = "";
 
-	static ScriptEngine scriptEngine;
-	static ScriptScope scriptScope;
+	ScriptEngine scriptEngine;
+	ScriptScope scriptScope;
 
 	string pythonCode = "";
 	string history = "";
     string pythonFileName = "";
 
-	bool insertIndent = false;
-	int id;
-
-	bool IsPromptFocused {
-		get {
-			return GUI.GetNameOfFocusedControl() == PROJECT_NAME;
-		}
-	}
-
 	void OnEnable() {
-		if (string.IsNullOrEmpty(PythonScriptPath))
-			PythonScriptPath = Application.dataPath + @"/PythonPrompt/PythonScripts/";
-	}
+		if (string.IsNullOrEmpty(PythonScriptPath)) {
+            PythonScriptPath = Application.dataPath + @"/PythonPrompt/PythonScripts/";
+        }
+    }
 
-	[MenuItem("Tools/Python Prompt")]
+	[MenuItem("Tools/" + PROJECT_NAME)]
 	public static void RunPython() {
 		var window = GetWindow<PyTerminalWindow>();
 		window.Initialize();
@@ -54,7 +46,15 @@ public class PyTerminalWindow : EditorWindow {
 
 	Vector2 scrollPosition;
 	void OnGUI() {
-        using (var scroll = new GUILayout.ScrollViewScope(scrollPosition)) {
+        // Run external Python code
+        GUI.SetNextControlName("File Name");
+        pythonFileName = EditorGUILayout.TextField(pythonFileName);
+        if (GUILayout.Button("Run File")) {
+            ExecutePythonFile(pythonFileName);
+        }
+
+        // hiistory panel
+        using (var scroll = new EditorGUILayout.ScrollViewScope(scrollPosition)) {
 			scrollPosition = scroll.scrollPosition;
 			GUILayout.Label(history);
 		}
@@ -65,35 +65,26 @@ public class PyTerminalWindow : EditorWindow {
 		style.fontSize = 11;
 		style.wordWrap = false;
 
-		GUI.SetNextControlName(PROJECT_NAME);
-
         // Text Area
-		pythonCode = GUILayout.TextArea(pythonCode, style, GUILayout.Height(position.height / 2));
+        GUI.SetNextControlName("Code Editor");
+        pythonCode = GUILayout.TextArea(pythonCode, style, GUILayout.Height(position.height / 2));
 
-		if (insertIndent) {
-			insertIndent = false;
+        if (GetKeyDown(KeyCode.Tab)) {
+            //EditorGUI.FocusTextInControl("File Name");
+            Event.current.type = EventType.Ignore;
 
-			var editor = (TextEditor) GUIUtility.GetStateObject(typeof(TextEditor), GUIUtility.keyboardControl);
-			editor.MoveTextEnd();
-		}
+            // expand tab input to spaces
+            pythonCode += "    ";
+            var editor = (TextEditor) GUIUtility.GetStateObject(typeof(TextEditor), GUIUtility.keyboardControl);
+            editor.cursorIndex += 4;
+        }
 
-		if (GetKeyDown(KeyCode.Tab)) {
-			pythonCode += "    ";
-			insertIndent = true;
-		}
-
-		GUI.backgroundColor = GUI.contentColor;
+        GUI.backgroundColor = GUI.contentColor;
 
         // Run Button
 		if (GUILayout.Button("Run")) {
 			ExecutePythonCode(pythonCode);
 		}
-
-        // Run external Python code
-        pythonFileName = GUILayout.TextField(pythonFileName);
-        if (GUILayout.Button("Run File")) {
-            ExecutePythonFile(pythonFileName);
-        }
 	}
 
 	bool GetKeyDown(KeyCode keyCode) {

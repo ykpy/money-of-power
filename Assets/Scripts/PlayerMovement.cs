@@ -27,16 +27,28 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        var direction = new Vector3(PlayerInput.GetAxis("Horizontal", playerId) * moveSpeed, rb.velocity.y, PlayerInput.GetAxis("Vertical", playerId) * moveSpeed);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Damaged@loop 0")) {
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            return;
+        }
+
+        var cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+        //var direction = new Vector3(PlayerInput.GetAxis("Horizontal", playerId) * moveSpeed, rb.velocity.y, PlayerInput.GetAxis("Vertical", playerId) * moveSpeed);
+        var moveForward = cameraForward * PlayerInput.GetAxis("Vertical", playerId) + Camera.main.transform.right * PlayerInput.GetAxis("Horizontal", playerId);
+        var direction = moveForward * moveSpeed + new Vector3(0, rb.velocity.y, 0);
         rb.velocity = direction;
 
         if (Mathf.Abs(direction.x) > 0.2f || Mathf.Abs(direction.z) > 0.2f) {
-            transform.localRotation = Quaternion.LookRotation(direction);
+            transform.localRotation = Quaternion.LookRotation(moveForward);
             isWalking = true;
         } else {
             isWalking = false;
         }
 
         animator.SetBool("isWalking", isWalking);
+    }
+
+    public void Damage() {
+        animator.SetTrigger("damage");
     }
 }
