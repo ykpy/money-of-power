@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMonoBehaviour<GameManager> {
-    public PlayerMovement player;
+    public PlayerStatus player1Status;
+    public PlayerStatus player2Status;
 
     private void Start() {
         SceneManager.LoadScene(Consts.UI, LoadSceneMode.Additive);
