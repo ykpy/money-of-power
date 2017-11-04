@@ -8,6 +8,9 @@ public class Equipment : MonoBehaviour {
 
     public int damage;
     public int jumpDamage;
+    public int pay;
+    public int jumpPay;
+    public PlayerStatus myPs;
     public PlayerMovement playerMovement;
     public PlayerJump pj;
     bool isCollisionDetection = false;
@@ -34,9 +37,16 @@ public class Equipment : MonoBehaviour {
         }
 
         if (pj.GetIsGrounded()) {
-            other.GetComponent<PlayerStatus>().calculateDamage(jumpDamage);
-        } else {
-            other.GetComponent<PlayerStatus>().calculateDamage(damage);
+            other.GetComponent<PlayerStatus>().CalculateDamage(damage);
+            myPs.MinusMoney(pay);
+            other.GetComponent<PlayerStatus>().PlusMoney(pay, myPs.money);
+
+
+        }
+        else {
+            other.GetComponent<PlayerStatus>().CalculateDamage(jumpDamage);
+            other.GetComponent<PlayerStatus>().PlusMoney(jumpPay, myPs.money);
+            myPs.MinusMoney(jumpPay);
         }
 
         StartCoroutine(WaitAttack());

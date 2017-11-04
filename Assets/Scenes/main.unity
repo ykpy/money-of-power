@@ -164,12 +164,12 @@ Prefab:
     - target: {fileID: 114867601449596244, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a,
         type: 2}
       propertyPath: money
-      value: 10
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 114867601449596244, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a,
         type: 2}
       propertyPath: pride
-      value: 19
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a, type: 2}
@@ -304,12 +304,12 @@ Prefab:
     - target: {fileID: 114867601449596244, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a,
         type: 2}
       propertyPath: money
-      value: 6000000
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 114867601449596244, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a,
         type: 2}
       propertyPath: pride
-      value: 25
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4630731264192170, guid: cd9adeb3df4d3114d9e71c2cd76f9a5a, type: 2}
       propertyPath: m_LocalPosition.x
@@ -728,7 +728,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 1770563147}
   damage: 0
-  jumpDamage: 20
+  jumpDamage: 50
+  pay: 0
+  jumpPay: 50
+  myPs: {fileID: 1437331020}
   playerMovement: {fileID: 460780182}
   pj: {fileID: 460780181}
 --- !u!4 &1770563147 stripped
