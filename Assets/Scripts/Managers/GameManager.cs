@@ -8,7 +8,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
     public PlayerStatus player2Status;
 
     private void Start() {
-        SceneManager.LoadScene(Consts.UI, LoadSceneMode.Additive);
+        SceneLoader.LoadSceneAdditive(Consts.UI);
     }
 
     private void Update() {
