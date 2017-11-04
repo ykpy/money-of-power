@@ -31,7 +31,8 @@ public class PlayerMovement : MonoBehaviour {
         rb.velocity = direction;
 
         if (Mathf.Abs(direction.x) > 0.2f || Mathf.Abs(direction.z) > 0.2f) {
-            transform.localRotation = Quaternion.LookRotation(direction);
+            var rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.localRotation = rotation;
             isWalking = true;
         } else {
             isWalking = false;

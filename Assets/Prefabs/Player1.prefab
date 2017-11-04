@@ -4071,7 +4071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 6
-  jumpSE: {fileID: 0}
+  jumpSE: {fileID: 8300000, guid: 2276a1feabcf325469e43dcccb5d95e7, type: 3}
 --- !u!114 &114867601449596244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4083,8 +4083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de26732897f5824c862333a299df5c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pride: 0
-  money: 0
+  pride: 100
+  money: 1000000
 --- !u!136 &136271726787754036
 CapsuleCollider:
   m_ObjectHideFlags: 1
