@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class TimeManager : MonoBehaviour {
+public class TimeManager : SingletonMonoBehaviour<TimeManager> {
 
 	public int time;
 	float times;
@@ -35,5 +36,6 @@ public class TimeManager : MonoBehaviour {
     void TimeUp()
     {
         Debug.Log("Time Up!!");
+        SceneManager.LoadScene("result");
     }
 }
