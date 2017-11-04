@@ -27,12 +27,14 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        var direction = new Vector3(PlayerInput.GetAxis("Horizontal", playerId) * moveSpeed, rb.velocity.y, PlayerInput.GetAxis("Vertical", playerId) * moveSpeed);
+        var cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+        //var direction = new Vector3(PlayerInput.GetAxis("Horizontal", playerId) * moveSpeed, rb.velocity.y, PlayerInput.GetAxis("Vertical", playerId) * moveSpeed);
+        var moveForward = cameraForward * PlayerInput.GetAxis("Vertical", playerId) + Camera.main.transform.right * PlayerInput.GetAxis("Horizontal", playerId);
+        var direction = moveForward * moveSpeed + new Vector3(0, rb.velocity.y, 0);
         rb.velocity = direction;
 
         if (Mathf.Abs(direction.x) > 0.2f || Mathf.Abs(direction.z) > 0.2f) {
-            var rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-            transform.localRotation = rotation;
+            transform.localRotation = Quaternion.LookRotation(moveForward);
             isWalking = true;
         } else {
             isWalking = false;
