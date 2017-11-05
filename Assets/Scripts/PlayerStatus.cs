@@ -23,16 +23,19 @@ public class PlayerStatus : MonoBehaviour {
     }
 
     public void PlusMoney(int paid, int otherPlayerMoney) {
-        if (otherPlayerMoney > 0) {
+        if (otherPlayerMoney - paid * 10000 <= 0) {
+            money += otherPlayerMoney;
+        } else {
             money += paid * 10000;
         }
     }
 
     public void MinusMoney(int pay) {
-        if (money - pay > 0) {
-            money -= pay * 10000;
-        } else {
+        if (money - pay * 10000 <= 0) {
             money = 0;
+        } else {
+            money -= pay * 10000;
+            
         }
     }
 }
